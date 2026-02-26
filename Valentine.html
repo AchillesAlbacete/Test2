@@ -1,0 +1,135 @@
+<!-- 
+Reflection:
+1. What AI tool did I use?
+-I basically used Gemini to prompt me some of my 
+animations for my Valentine html and css designs.
+2. How did it help me?
+-The AI tool helped me significantly throughout the activity,
+It exceeded my expectations.
+3. What did I modify or improve?
+-I modified and improved my html file by adding animations and adding events to my button,
+like when you press Yes, a picture of me kissing emerges and is enlarged, and even when you press No, the yes button replaces it right away, resulting to my face emerging and kissing.
+4. What did I learn from this activity?
+-I learned and applied what i have used in the previous activities, and applied it to this activity.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gradient Background</title>
+    <link rel="stylesheet" href="Love.css">
+</head>
+
+<body class="gradient-box">
+  
+    <h1>My Valentines Card</h1>
+
+    <div class="card-wrapper">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                
+                <div class="flip-card-front library-card">
+                    <strong class="card-title">HAPPY VALENTINES</strong>
+                    <hr color="white" size="2"> 
+                    <div class="id-flex-container">
+                        <div class="id-text">
+                            Name: Achilles A. Albacete.<br> 
+                            To: My beloved darling<br>
+                            Message: Every day feels like a celebration with you, but today I wanted to take a moment to tell you exactly how much you mean to me. You’re my favorite person, my greatest adventure, and my home. Happy Valentine’s Day to the one who holds my heart.
+                        </div>
+                        <div class="id-photo">
+                            <img src="https://i.ibb.co/zTPHwtVZ/Cropped-aki-smile-removebg-preview.png" alt="Achilles Albacete">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card-back library-card">
+                    <strong class="card-title">I Lab U</strong>
+                    <hr color="white" size="2">
+                    <div class="back-content">
+                        <p>Is dedicated to his darling xoxoxox.</p>
+                        <p>DO NOT RETURN TO THE OWNER.</p>
+                        <p>Wanna date me?</p>
+                        <p>Mobile No. +63 956 995 9821</p>
+                        <div class="barcode"></div>
+                        <p style="font-size: 10px; margin-top: 20px;">Happy Valentines</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="action-container">
+        <div class="button-row">
+            <button id="yes-btn" onclick="respond('yes')" class="btn-choice yes">YES</button>
+            <button id="no-button" onclick="respond('no')" class="btn-choice no">NO</button>
+        </div>
+        
+        <div id="result-display" class="result-display">
+            <img id="status-image" class="fade-in" src="" alt="Response Image">
+        </div>
+    </div>
+
+    <script>
+        // Background Decor Hearts
+        window.onload = function() {
+            for (let i = 0; i < 15; i++) {
+                createDecorHeart();
+            }
+        };
+
+        function createDecorHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = Math.random() * 100 + "vh";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+            heart.style.opacity = Math.random() * 0.4;
+            document.body.appendChild(heart);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-burst');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function respond(choice) {
+            const imgElement = document.getElementById('status-image');
+            const displayDiv = document.getElementById('result-display');
+            const noBtn = document.getElementById('no-button');
+            
+            imgElement.style.animation = 'none';
+            imgElement.offsetHeight; 
+            imgElement.style.animation = null; 
+            imgElement.classList.remove('grow-animation');
+            
+            if (choice === 'yes') {
+                // Using your new YES image link
+                imgElement.src = 'https://i.ibb.co/ZpcBXbMB/YES.png'; 
+                imgElement.classList.add('grow-animation');
+                displayDiv.style.display = 'block';
+                for(let i=0; i<30; i++) {
+                    setTimeout(createHeart, i * 100);
+                }
+            } else {
+                noBtn.innerText = "YES";
+                noBtn.classList.remove('no');
+                noBtn.classList.add('yes');
+                noBtn.setAttribute('onclick', "respond('yes')");
+                
+                // Using your new NO image link
+                imgElement.src = 'https://i.ibb.co/FbxbFCH8/NO.png';
+                displayDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
